@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Baggage Check</title>
+    <script>
+        const check = () => {
+            const weightInput = document.getElementById('weight');
+            const removedInput = document.getElementById('removed');
+            const removeButton = document.getElementById('remB');
+
+            let weight = parseInt(weightInput.value);
+
+            if (weight > 20) {
+                alert('Overweight: ' + weight);
+                removedInput.style.display = 'block';
+                removeButton.style.display = 'block';
+            } else {
+                alert('Weight is fine: ' + weight);
+                removedInput.style.display = 'none';
+                removeButton.style.display = 'none';
+            }
+        };
+
+        const remove = () => {
+            const weightInput = document.getElementById('weight');
+            const removedInput = document.getElementById('removed');
+            const removeButton = document.getElementById('remB');
+
+            let weight = parseInt(weightInput.value);
+            let removed = parseInt(removedInput.value);
+
+            weight -= removed;
+            weightInput.value = weight;
+
+            alert('New weight:' + weight);
+
+            // Always hide after updating
+            removedInput.style.display = 'none';
+            removeButton.style.display = 'none';
+
+            if (weight <= 20) {
+                alert('weight is fine now,you may proceed.');
+            } else {
+                alert('still overweight,check again.');
+            }
+        };
+    </script>
+</head>
+<body>
+    <h2>Baggage Weight Checker</h2>
+    <input type="text" id="weight" placeholder="Enter baggage weight(kg)">
+    <button onclick="check()">Check Baggage</button>
+
+    <p>
+        <input type="text" id="removed" style="display: none;" placeholder="Weight to remove(kg)">
+        <button id="remB" onclick="remove()" style="display: none;">Remove this much baggage (kg)</button>
+    </p>
+</body>
+</html>
