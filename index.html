@@ -1,59 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Baggage Check</title>
+    <title>Baggage Weight Checker</title>
+    <style>
+        body {
+        font-family: Arial;
+        background: lightblue;
+        margin: 20px;
+        }
+
+        h2 {
+        color: black;
+        }
+
+        input {
+        padding: 5px;
+        margin: 5px;
+        width: 200px;
+        }
+
+        button {
+        padding: 8px;
+        background: blue;
+        color: white;
+        border: none;
+        }
+
+        button:hover {
+        background: darkblue;
+        }
+
+    </style>
     <script>
         const check = () => {
-            const weightInput = document.getElementById('weight');
-            const removedInput = document.getElementById('removed');
-            const removeButton = document.getElementById('remB');
-
-            let weight = parseInt(weightInput.value);
-
-            if (weight > 20) {
-                alert('Overweight: ' + weight);
-                removedInput.style.display = 'block';
-                removeButton.style.display = 'block';
+            const weight=parseInt(document.getElementById('weight').value);
+            const ri=document.getElementById('removed');
+            const rb=document.getElementById('remB');
+            if (isNaN(weight))//returns NaN if the weight is nkt a number
+             {
+                alert('enter a valid weight');
+                return;
+            }
+            if (weight>40) {
+                alert('Your baggage weigh'+weight+' kg and its over weight');
+                ri.style.display='block';
+                rb.style.display='block';
             } else {
-                alert('Weight is fine: ' + weight);
-                removedInput.style.display = 'none';
-                removeButton.style.display = 'none';
+                alert('Your baggage weighs'+weight+' kg and its safe limit');
+                ri.style.display='none';
+                rb.style.display='none';
             }
         };
 
         const remove = () => {
-            const weightInput = document.getElementById('weight');
-            const removedInput = document.getElementById('removed');
-            const removeButton = document.getElementById('remB');
-
-            let weight = parseInt(weightInput.value);
-            let removed = parseInt(removedInput.value);
-
-            weight -= removed;
-            weightInput.value = weight;
-
-            alert('New weight:' + weight);
-
-            // Always hide after updating
-            removedInput.style.display = 'none';
-            removeButton.style.display = 'none';
-
-            if (weight <= 20) {
-                alert('weight is fine now,you may proceed.');
+            const wi = document.getElementById('weight');
+            const ri=document.getElementById('removed');
+            const rb=document.getElementById('remB');
+            let weight=parseInt(wi.value);
+            let removed=parseInt(ri.value);
+            if (isNaN(removed)) {
+                alert('enter a valid weight to remove');
+                return;
+            }
+            weight=weight-removed;
+            wi.value=weight;
+            alert('Updated weight: '+weight+' kg.');
+            ri.style.display='none';
+            rb.style.display='none';
+            if (weight <= 40) {
+                alert('Weight is now within limit.You can proceed');
             } else {
-                alert('still overweight,check again.');
+                alert('Still overweight.Try removing more weight');
             }
         };
     </script>
 </head>
 <body>
     <h2>Baggage Weight Checker</h2>
-    <input type="text" id="weight" placeholder="Enter baggage weight(kg)">
+    <label for="weight">Enter baggage weight (kg):</label><br>
+    <input type="text" id="weight" placeholder="weight in kg"><br>
     <button onclick="check()">Check Baggage</button>
-
-    <p>
-        <input type="text" id="removed" style="display: none;" placeholder="Weight to remove(kg)">
-        <button id="remB" onclick="remove()" style="display: none;">Remove this much baggage (kg)</button>
-    </p>
+    <div>
+        <label for="removed" style="display: none;" id="remLabel">Remove weight (kg):</label><br>
+        <input type="text" id="removed" style="display: none;" placeholder="weight in kg">
+        <br>
+        <button id="remB" onclick="remove()" style="display: none;">Remove Baggage</button>
+    </div>
 </body>
 </html>
