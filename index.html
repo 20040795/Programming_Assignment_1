@@ -52,27 +52,35 @@
             }
         };
 
-        const remove = () => {
-            const wi = document.getElementById('weight');
-            const ri=document.getElementById('removed');
-            const rb=document.getElementById('remB');
-            let weight=parseInt(wi.value);
-            let removed=parseInt(ri.value);
-            if (isNaN(removed)) {
-                alert('enter a valid weight to remove');
-                return;
-            }
-            weight=weight-removed;
-            wi.value=weight;
-            alert('Updated weight: '+weight+' kg.');
-            ri.style.display='none';
-            rb.style.display='none';
-            if (weight <= 40) {
-                alert('Weight is now within limit.You can proceed');
-            } else {
-                alert('Still overweight.Try removing more weight');
-            }
-        };
+     let remove = () => {
+    let ageInput = document.getElementById('age');
+    let addInput = document.getElementById('remove');
+    let rLabel = document.getElementById('removeLabel');
+    let rButton = document.getElementById('removeb');
+
+    let currentAge = parseInt(ageInput.value);
+    let addYears = parseInt(addInput.value);
+
+    if (isNaN(addYears)) {
+        alert("Please enter a valid number to add");
+        return;
+    }
+
+    currentAge += addYears;
+    ageInput.value = currentAge;
+
+    if (currentAge > 18) {
+        alert("🎉 Now you can vote!");
+        // hide the age increase section
+        addInput.style.display = 'none';
+        rLabel.style.display = 'none';
+        rButton.style.display = 'none';
+    } else {
+        alert("Still too young");
+    }
+};
+
+
     </script>
 </head>
 <body>
