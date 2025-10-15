@@ -1,98 +1,53 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <title>Baggage Weight Checker</title>
-    <style>
-        body {
-        font-family: Arial;
-        background: lightblue;
-        margin: 20px;
-        }
+  <head>
+    <title>Assignment 1</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
 
-        h2 {
-        color: black;
-        }
-
-        input {
-        padding: 5px;
-        margin: 5px;
-        width: 200px;
-        }
-
-        button {
-        padding: 8px;
-        background: blue;
-        color: white;
-        border: none;
-        }
-
-        button:hover {
-        background: darkblue;
-        }
-
-    </style>
-    <script>
-        const check = () => {
-            const weight=parseInt(document.getElementById('weight').value);
-            const ri=document.getElementById('removed');
-            const rb=document.getElementById('remB');
-            if (isNaN(weight))//returns NaN if the weight is nkt a number
-             {
-                alert('enter a valid weight');
-                return;
-            }
-            if (weight>40) {
-                alert('Your baggage weigh '+weight+' kg and its over weight');
-                ri.style.display='block';
-                rb.style.display='block';
-            } else {
-                alert('Your baggage weighs '+weight+' kg and its safe limit');
-                ri.style.display='none';
-                rb.style.display='none';
-            }
-        };
-
-     let remove = () => {
-    let ageInput = document.getElementById('age');
-    let addInput = document.getElementById('remove');
-    let rLabel = document.getElementById('removeLabel');
-    let rButton = document.getElementById('removeb');
-
-    let currentAge = parseInt(ageInput.value);
-    let addYears = parseInt(addInput.value);
-
-    if (isNaN(addYears)) {
-        alert("Please enter a valid number to add");
-        return;
-    }
-
-    currentAge += addYears;
-    ageInput.value = currentAge;
-
-    if (currentAge > 18) {
-        alert("🎉 Now you can vote!");
-        // hide the age increase section
-        addInput.style.display = 'none';
-        rLabel.style.display = 'none';
-        rButton.style.display = 'none';
-    } else {
-        alert("Still too young");
-    }
-};
+<h1>Exercise 2</h1>
 
 
-    </script>
-</head>
-<body>
-    <h2>Baggage Weight Checker</h2>
-    <label for="weight">Enter baggage weight (kg):</label><br>
-    <input type="text" id="weight" placeholder="weight in kg"><br>
-    <button onclick="check()">Check Baggage</button>
+<p>
+  <label for="a">A</label> <input type="text" id="a" />
+  <label for="b">B</label> <input type="text" id="b" />
+  <label for="n">N</label> <input type="text" id="n" />
+</p>
+
+<p>
+  <button onclick="euler1()">Press for solution to project Euler</button>
+</p>
+
+
+   <h1>Exercise 3</h1>
+<p>
+  Sum of multiples of a or b in list l.<br>
+  <label for="a1">A</label> <input type="text" id="a1" /><br />
+  <label for="b1">B</label> <input type="text" id="b1" /><br />
+  <label for="l">L</label> <input type="text" id="l" />
+</p>
+<p>
+  <button onclick="eulerlist()">Press for solution to project Euler</button>
+</p>
+
+    <p>
+      Part 1: compute the sum of multiples of elements in list a, found in list
+      l. List a is of length 2
+      <br />
+      Part 1: compute the sum of multiples of elements in list a, found in list
+      l. List a may be any length
+      <label for="aList:">A</label> <input type="text" id="aList" />
+      <label for="mList:">L</label> <input type="text" id="mList" />
+    </p>
     <div>
-        <label for="removed" style="display: none;" id="remLabel">Remove weight (kg):</label><br>
-        <input type="text" id="removed" style="display: none;" placeholder="weight in kg">
-        <br>
-        <button id="remB" onclick="remove()" style="display: none;">Remove Baggage</button>
+      <input id="input" placeholder="3 5 : 1 2 3 4 5 6 7 8 9" />
+      <button onclick="run()">Run</button>
+      <p id="output"></p>
     </div>
-</body>
+    <script src="ex1.js"></script>
+    <script src="ex2.js"></script>
+    <script src="ex3.js"></script>
+    <script src="ex4.js"></script>
+  </body>
 </html>
